@@ -1,0 +1,19 @@
+<h5>Category</h5>
+<ul class="category">
+  <li *ngFor="let category of categoryList">
+    <a routerLink="/category/{{category.catName}}">
+      <span class="badge">{{category.catName}}</span>
+    </a>
+    <!-- <button class="delete" title="delete hero"
+      (click)="delete(hero)">x</button> -->
+  </li>
+</ul>
+<!-- for children path: -->
+<!-- <router-outlet></router-outlet> -->
+
+
+<!-- <br><br><br>
+<div>
+  <h6>Category Name: </h6>  <input type="text" #catNameSearch />
+  <button (click)="search()">Search</button>
+</div> -->

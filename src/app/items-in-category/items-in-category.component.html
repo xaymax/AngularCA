@@ -1,0 +1,9 @@
+<p>
+  items-in-category works!
+</p>
+<ul>
+  <li *ngFor="let item of items">
+    <a routerLink="/category/{{catName}}/{{item.name}}" (click)="getApiUrl(item.url)">{{item.name}}</a>
+    <p>{{item.url}}</p>
+  </li>
+</ul>
