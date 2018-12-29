@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { StarwarService } from '../starwar.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
-import { HttpParams } from '@angular/common/http';
+
+import { StarwarService } from '../starwar.service';
 
 @Component({
   selector: 'app-items-in-category',
@@ -12,10 +11,8 @@ import { HttpParams } from '@angular/common/http';
 })
 export class ItemsInCategoryComponent implements OnInit {
 
-  // @Input() catName: string;
   items = [];
-  public itemApiUrl:string='';
-  // id:string='';
+  itemApiUrl: string = '';
   catName = this.route.snapshot.paramMap.get('catName');
 
   constructor(
@@ -28,43 +25,19 @@ export class ItemsInCategoryComponent implements OnInit {
     this.getItemsInCategory();
   }
 
-  // getItemsInCategory(): Promise<any> {
-  //   console.log('Get into items-in-category component getItems(catName) function');
-  //   const catName = this.route.snapshot.paramMap.get('catName');
-  //   return this.starwarService.getItems(catName)
-  //     .toPromise()
-  //     //.then(this.extractData)
-  //     .then((data) => this.items = JSON.parse(data))//{this.items=this.extractData; })
-  //     .catch(this.starwarService.handleError<any>(`getItems name=${catName}`));;
-  //   // .subscribe(items => this.items = items);
-  //   //this.starwarService.getItems(categoryName).subscribe(item=>this.items=item);
-  // }
-
-  // private extractData(res: Response) {
-  //   let items = res.json;
-  //   return items || [];
-  // }
-
+  /* To load all items in the selected category */
   getItemsInCategory() {
-    console.log('Get into items-in-category component getItemsInCategory() function');
-
+    //console.log('Get into items-in-category component getItemsInCategory() function');
     return this.starwarService.getItems(this.catName)
       .subscribe((data) => {
-        console.log(data.results);
+        // console.log(data.results);
         this.items = data.results;
-        // this.id=this.getItemId();
       });
   }
 
-  // getItemId():string{
-	// 	var index = this.itemUrl.lastIndexOf("\/");
-  //   var id = decodeURI(this.itemUrl.substring(index + 1, this.itemUrl.length));
-  //   return id;
-  // }
-
-  //********(click) action */
-  getApiUrl(itemApiUrl:string){
-    console.log("items-in-category component:"+itemApiUrl)
-    this.starwarService.getApiUrl(itemApiUrl);
+  /* (click) action, to get the selected item details API url*/
+  getItemApiUrl(itemApiUrl: string) {
+    // console.log("items-in-category component, itemApiUrl: " + itemApiUrl);
+    this.starwarService.getItemApiUrl(itemApiUrl);
   }
 }

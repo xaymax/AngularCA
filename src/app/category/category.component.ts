@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Category } from '../category';
 import { StarwarService } from '../starwar.service';
-
 
 @Component({
   selector: 'app-category',
@@ -11,7 +9,8 @@ import { StarwarService } from '../starwar.service';
 })
 export class CategoryComponent implements OnInit {
 
-  categoryList=[];
+  categoryList: Array<any> = [];
+  categoryItem: string = '';
 
   constructor(
     private starwarService: StarwarService
@@ -21,11 +20,17 @@ export class CategoryComponent implements OnInit {
     this.getCategoryList();
   }
 
+
+  /* To load the whole category, and return the category list */
   getCategoryList(): void {
     this.starwarService.getCategoryList()
-      .subscribe(categoryList => {this.categoryList = categoryList;
-      console.log('category Componet: We got'+categoryList);});
+      .subscribe((data) => {
+        this.categoryList = Object.keys(data);
+        this.categoryList.forEach(element => {
+          this.categoryItem = element;
+          //console.log("categoryItem: " + this.categoryItem);
+        });
+        console.log('category Component: We got ' + this.categoryList);
+      });
   }
-
-  
 }

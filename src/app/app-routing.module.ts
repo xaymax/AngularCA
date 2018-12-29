@@ -10,9 +10,8 @@ const routes: Routes = [
   { path: 'category', component: CategoryComponent, },
   { path: 'category/:catName', component: ItemsInCategoryComponent },
   { path: 'category/:catName/:itemName', component: DetailsComponent },
-  // { path: '**', component: PageNotFoundComponent,pathMatch:'prefix' },
   { path: '', redirectTo: '/category', pathMatch: 'full' },
-
+  { path: '**', component: PageNotFoundComponent }
 
 ];
 @NgModule({

@@ -1,18 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-
 import { Observable, of, from } from 'rxjs';
 import { catchError, map, tap, subscribeOn } from 'rxjs/operators';
 
-import { Category } from './category';
-import { CATEGORYLIST } from './categoryList';
-import { pipe } from '@angular/core/src/render3/pipe';
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
+}
 
 @Injectable({
   providedIn: 'root'
@@ -20,58 +14,47 @@ const httpOptions = {
 export class StarwarService {
 
   public baseUrl = 'https://swapi.co/api';
-  private CatName: string = '';
-  private itemName: string = '';
-  public itemApiUrl:string = '';
+  public itemApiUrl: string = '';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getCategoryList(): Observable<Category[]> {
-    return of(CATEGORYLIST)
+  getCategoryList() {
+    return this.http.get<String>(`${this.baseUrl}/`)
+      .pipe(
+        tap(_ => console.log(`SERVICE: fetch category list, and the url is: ${this.baseUrl}/`)),
+        catchError(this.handleError<any>(`getCategoryList() in service has problems~`))
+      )
   }
 
-  /** GET ItemsInCategory by catName. Will 404 if id not found */
-
-  // getItems(categoryName: string): Observable<any>{ //Promise<any> {
-  //   const itemsInCategoryUrl = `${this.baseUrl}/${categoryName}`;
-  //   return this.http.get(itemsInCategoryUrl);
-  //     .toPromise()
-  //     .then(item=>this.item)
-  //     ;
-  // }
   getItems(catName: string) {
-    const _itemsInCategoryUrl = `${this.baseUrl}/${catName}/`;
-    // this.CatName = catName;
-    // this.http.get<Iitems>(itemsInCategoryUrl).subscribe(data=>{console.log("We got", data.obj)});
-    return this.http.get<any>(_itemsInCategoryUrl)
+    const itemsInCategoryUrl = `${this.baseUrl}/${catName}/`;
+    return this.http.get<any>(itemsInCategoryUrl)
       .pipe(
-        tap(_ => console.log(`fetch category name = ${catName}, and itemsInCategoryUrl is ${_itemsInCategoryUrl}`)),
-        catchError(this.handleError<any>(`getItems(), category name=${catName}`))
+        tap(_ => console.log(`SERVICE: fetch selected category: ${catName} and its items, and itemsInCategoryUrl is ${itemsInCategoryUrl}`)),
+        catchError(this.handleError<any>(`getItems(${catName}) in service has problems~`))
       );
   };
 
-  getApiUrl(itemApiUrl:string){
-    this.itemApiUrl=itemApiUrl;
-    console.log(this.itemApiUrl);
+  getItemApiUrl(itemApiUrl: string) {
+    this.itemApiUrl = itemApiUrl;
+    // console.log(this.itemApiUrl);
   }
 
   getDetailsOfItem(itemName: string) {
-    console.log(itemName);
-    // const detailOfItemUrl = `${this.baseUrl}/${this.CatName}/${id}/`;
-    const detailOfItemUrl=this.itemApiUrl;
-
-    console.log(this.itemApiUrl);
+    // console.log(itemName);
+    const detailOfItemUrl = this.itemApiUrl;
+    // console.log(this.itemApiUrl);
     return this.http.get<any>(detailOfItemUrl)
       .pipe(
-        tap(_ => console.log(`fetch detailOfItemUrl is ${detailOfItemUrl}`)),
-        catchError(this.handleError<any>(`getDetailsOfItem(), item name=${itemName}`))
+        tap(_ => console.log(`SERVICE: fetch selected item: ${itemName} details, detailOfItemUrl is ${detailOfItemUrl}`)),
+        catchError(this.handleError<any>(`getDetailsOfItem(${itemName}) in service has problems`))
       );
   };
 
 
-
+  /* Handle Error */
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

@@ -3,7 +3,8 @@
 </p>
 <ul>
   <li *ngFor="let item of items">
-    <a routerLink="/category/{{catName}}/{{item.name}}" (click)="getApiUrl(item.url)">{{item.name}}</a>
-    <p>{{item.url}}</p>
+    <a routerLink="/category/{{catName}}/{{item.name}}" (click)="getItemApiUrl(item.url)">
+      {{item.name}}
+    </a>
   </li>
 </ul>
