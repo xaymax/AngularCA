@@ -1,11 +1,16 @@
 <h5>Category</h5>
-<ul class="category">
+<!-- <ul class="category">
   <li *ngFor="let category of categoryList">
-    <a routerLink="/category/{{category}}">
+    <a routerLink="/{{category}}">
       <span class="badge">{{category}}</span>
     </a>
-    <!-- <a [routerLink]="[ '/category/{{category}}' ]" [pageParams]="{ page: 1 }">
-      <span class="badge">2{{category}}</span>
-    </a> -->
+  </li>
+</ul> -->
+
+<ul class="category">
+  <li *ngFor="let category of categories | keyvalue">
+    <a routerLink="/{{category.key}}" [queryParams]={page:page}>
+      {{category.key}}
+    </a>
   </li>
 </ul>

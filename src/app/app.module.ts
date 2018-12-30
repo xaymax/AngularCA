@@ -1,13 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AngularMaterialModule } from './angular-material.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
-import { ItemsInCategoryComponent } from './items-in-category/items-in-category.component';
 import { DetailsComponent } from './details/details.component';
-import { AppRoutingModule } from './app-routing.module';
+import { ItemsInCategoryComponent } from './items-in-category/items-in-category.component';
+// import { PageNavComponent } from './page-nav/page-nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+
 
 @NgModule({
   declarations: [
@@ -16,11 +20,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ItemsInCategoryComponent,
     DetailsComponent,
     PageNotFoundComponent
+    // PageNavComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

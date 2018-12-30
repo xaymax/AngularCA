@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { StarwarService } from './starwar.service';
 
-describe('CategoryService', () => {
+describe('StarwarService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

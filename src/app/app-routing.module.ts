@@ -8,14 +8,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   { path: 'category', component: CategoryComponent, },
-  { path: 'category/:catName', component: ItemsInCategoryComponent },
-  { path: 'category/:catName/:itemName', component: DetailsComponent },
+  { path: ':catName', component: ItemsInCategoryComponent },
+  { path: ':catName/:itemId', component: DetailsComponent },
   { path: '', redirectTo: '/category', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
-
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes//, { enableTracing: true } // <-- debugging purposes only
+  )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

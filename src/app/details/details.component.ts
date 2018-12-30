@@ -1,9 +1,8 @@
 import { Component, OnInit, IterableDiffers } from '@angular/core';
-import { StarwarService } from '../starwar.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { catchError, map, tap, subscribeOn } from 'rxjs/operators';
 
+import { StarwarService } from '../starwar.service';
 
 @Component({
   selector: 'app-details',
@@ -12,7 +11,10 @@ import { catchError, map, tap, subscribeOn } from 'rxjs/operators';
 })
 export class DetailsComponent implements OnInit {
 
-  itemName = this.route.snapshot.paramMap.get('itemName');
+  itemId = this.route.snapshot.paramMap.get('itemId');
+  catName = this.route.snapshot.paramMap.get('catName');
+
+
   itemUrl: string = '';
   keys: Array<any> = [];
   key: string = '';
@@ -28,13 +30,13 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getDetailsOfItem();
+    this.showDetailsOfItem();
   }
 
   /* To load details of the selected item */
-  getDetailsOfItem() {
+  showDetailsOfItem() {
     // console.log('Get into details component getDetailsOfItem() function');
-    return this.starwarService.getDetailsOfItem(this.itemName)
+    return this.starwarService.getDetailsOfItem(this.catName,this.itemId)
       .subscribe((data) => {
         console.log(data); //json
         console.log(typeof data);//object
@@ -44,15 +46,12 @@ export class DetailsComponent implements OnInit {
         console.log(this.keys);
         console.log(this.values);
 
-        this.keys.forEach(element => {
-          this.key = element;
-          // console.log(this.key);
-        });
-
-        this.values.forEach(element => {
-          this.value = element;
-          // console.log(this.value);
-        });
+        // this.keys.forEach(element => {
+        //   this.key = element;
+        // });
+        // this.values.forEach(element => {
+        //   this.value = element;
+        // });
 
         for (let i = 1; i <= this.keys.length; i++) {
           this.detail = this.keys[i] + ": " + this.values[i];
