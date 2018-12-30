@@ -1,0 +1,10 @@
+<p>
+  page-nav works!
+</p>
+
+<div class="example-button-row">
+  <button mat-raised-button type='button' *ngIf="prePage" (click)="changeCurrentPage(prePage)" routerLink="/{{catName}}" [queryParams]={page:prePage}><span><</span></button>
+  <button mat-stroked-button type='button' *ngFor="let i of pages" (click)="changeCurrentPage(i)" routerLink="/{{catName}}" [queryParams]={page:i}>{{i}}</button>
+  <button mat-raised-button type='button' *ngIf="nextPage" (click)="changeCurrentPage(nextPage)" routerLink="/{{catName}}" [queryParams]={page:nextPage}><span>></span></button>
+</div>
+

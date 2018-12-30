@@ -42,14 +42,14 @@ export class StarwarService {
       );
   };
 
-  getPageSize(catName:string) {
-    const allItemsInCategoryUrl = `${this.baseUrl}/${catName}/`;
-    return this.http.get<any>(allItemsInCategoryUrl)
-      .pipe(
-        tap(_ => console.log(`SERVICE: get the number of pages of selected category: ${catName}` )),
-        catchError(this.handleError<any>(`getPageSize(${catName}) in service has problems~`))
-      );
-  }
+  // getPageSize(catName:string) {
+  //   const allItemsInCategoryUrl = `${this.baseUrl}/${catName}/`;
+  //   return this.http.get<any>(allItemsInCategoryUrl)
+  //     .pipe(
+  //       tap(_ => console.log(`SERVICE: get the number of pages of selected category: ${catName}` )),
+  //       catchError(this.handleError<any>(`getPageSize(${catName}) in service has problems~`))
+  //     );
+  // }
 
   /* (click) selected item */
   getItemIdFromApiUrl(itemApiUrl: string): string {

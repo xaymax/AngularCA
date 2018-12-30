@@ -1,11 +1,10 @@
 <p>
   items-in-category works!
 </p>
-<div class="example-button-row">
-  <button mat-raised-button><span><</span> </button>
-  <button mat-stroked-button *ngFor="let i of pages" routerLink="/{{catName}}" [queryParams]={page:i}>{{i}}</button>
-  <button mat-raised-button><span>></span></button>
-</div>
+<div>
+    <button (click)="goBack()">Back</button>
+  </div>
+<app-page-nav (click)="changePage()"></app-page-nav>
 <ul>
   <li *ngFor="let item of items">
     <a routerLink="/{{catName}}/{{getItemIdFromCurrentPageNum(item.url)}}" (click)="getItemApiAndId(item.url)">
