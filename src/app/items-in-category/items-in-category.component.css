@@ -1,0 +1,10 @@
+span{
+    color: darkturquoise;
+}
+
+li:hover{
+    background-color: wheat;
+}
+li{
+    list-style-type: none;
+}

@@ -1,11 +1,18 @@
-<p>
-  details works!
-</p>
+
 <div>
-  <button (click)="goBack()">Back</button>
+  <button mat-raised-button type='button' class="back" (click)="goBack()">Back</button>
 </div>
-<ul>
+<!-- <ul>
   <li *ngFor="let detail of details">
     <p>{{detail}}</p>
   </li>
-</ul>
+</ul> -->
+
+
+<div class="card" style="width: 18rem;" *ngFor="let detail of details">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">{{detail}}</p>
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+</div>
