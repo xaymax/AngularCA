@@ -28,13 +28,13 @@ export class CategoryComponent implements OnInit {
   showCategoryList(): void {
     this.starwarService.getCategoryList()
       .subscribe((data) => {
-        this.categoryList = Object.keys(data);
-        this.categoryApiList = Object.values(data);
+        // this.categoryList = Object.keys(data);
+        // this.categoryApiList = Object.values(data);
         // this.categoryList.forEach(element => {
         // this.categoryItem = element;
         //console.log("categoryItem: " + this.categoryItem);
         // });
-        console.log(`category Component: We got ${this.categoryList}, and APIs ${this.categoryApiList}`);
+        // console.log(`category Component: We got ${this.categoryList}, and APIs ${this.categoryApiList}`);
 
         this.categories = data;
       });

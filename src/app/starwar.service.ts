@@ -7,22 +7,30 @@ import { catchError, map, tap, subscribeOn, toArray } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 }
-const pageParams = new HttpParams();
 
 @Injectable({
   providedIn: 'root'
 })
 export class StarwarService {
 
+  /* ------------------------------------------ */
+  /*                  PROPERTIES                */
+  /* ------------------------------------------ */
   public baseUrl = 'https://swapi.co/api';
   public itemApiUrl: string = '';//in case to use
   public itemId: string = '';
 
+  /* ------------------------------------------ */
+  /*                  CONSTRUCTOR               */
+  /* ------------------------------------------ */
   constructor(
     private http: HttpClient,
   ) { }
 
-  /********* CategoryComponent *********/
+
+  /* ------------------------------------------ */
+  /************** CategoryComponent *************/
+  /* ------------------------------------------ */
   getCategoryList() {
     return this.http.get<String>(`${this.baseUrl}/`)
       .pipe(
@@ -31,41 +39,35 @@ export class StarwarService {
       )
   }
 
+  /* ------------------------------------------ */
+  /****** Items & ItemsInCategoryComponent ******/
+  /* ------------------------------------------ */
 
-  /********* ItemsInCategoryComponent *********/
   getItemsInCategory(catName: string, pageNum: string) {
-    const itemsInCategoryUrl = `${this.baseUrl}/${catName}/?page=${pageNum}`;
+    let itemsInCategoryUrl = `${this.baseUrl}/${catName}/?page=${pageNum}`;
+    console.log('itemsInCategoryUrl service:' + itemsInCategoryUrl);
     return this.http.get<any>(itemsInCategoryUrl)
-      .pipe(
-        tap(_ => console.log(`SERVICE: fetch selected category: ${catName} and its items, and itemsInCategoryUrl is ${itemsInCategoryUrl}`)),
-        catchError(this.handleError<any>(`getItemsInCategory(${catName}, ${pageNum}) in service has problems~`))
-      );
+      // .pipe(
+      //   tap(_ => console.log(`SERVICE: fetch selected category: ${catName} and its items, and itemsInCategoryUrl is ${itemsInCategoryUrl}`)),
+      //   catchError(this.handleError<any>(`getItemsInCategory(${catName}, ${pageNum}) in service has problems~`))
+      // );
+      .toPromise();
   };
 
-  // getPageSize(catName:string) {
-  //   const allItemsInCategoryUrl = `${this.baseUrl}/${catName}/`;
-  //   return this.http.get<any>(allItemsInCategoryUrl)
-  //     .pipe(
-  //       tap(_ => console.log(`SERVICE: get the number of pages of selected category: ${catName}` )),
-  //       catchError(this.handleError<any>(`getPageSize(${catName}) in service has problems~`))
-  //     );
-  // }
-
-  /* (click) selected item */
+  /* to get item's itemId from API URL*/
   getItemIdFromApiUrl(itemApiUrl: string): string {
     this.itemApiUrl = itemApiUrl;
-    const arrUrlSplit = itemApiUrl.split('/');
+    let arrUrlSplit = itemApiUrl.split('/');
     var id = arrUrlSplit[arrUrlSplit.length - 2];
     return this.itemId = id;
   }
 
+  /* ------------------------------------------ */
+  /************** DetailsComponent **************/
+  /* ------------------------------------------ */
 
-  /********** DetailsComponent *********/
   getDetailsOfItem(catName: string, itemId: string) {
-    // console.log(itemName);
-    // const detailOfItemUrl = this.itemApiUrl;
-    // console.log(this.itemApiUrl);
-    const detailOfItemUrl = `${this.baseUrl}/${catName}/${itemId}`;
+    let detailOfItemUrl = `${this.baseUrl}/${catName}/${itemId}`;
 
     return this.http.get<any>(detailOfItemUrl)
       .pipe(
@@ -78,7 +80,10 @@ export class StarwarService {
 
 
 
-  /* Handle Error */
+  /* ------------------------------------------ */
+  /*                 Handle Error               */
+  /* ------------------------------------------ */
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

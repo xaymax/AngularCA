@@ -9,7 +9,7 @@ import { CategoryComponent } from './category/category.component';
 import { DetailsComponent } from './details/details.component';
 import { ItemsInCategoryComponent } from './items-in-category/items-in-category.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PageNavComponent } from './page-nav/page-nav.component';
+import { ItemsComponent } from './items/items.component';
 
 
 
@@ -20,7 +20,7 @@ import { PageNavComponent } from './page-nav/page-nav.component';
     ItemsInCategoryComponent,
     DetailsComponent,
     PageNotFoundComponent,
-    PageNavComponent
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

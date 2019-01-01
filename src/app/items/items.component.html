@@ -1,10 +1,12 @@
 <p>
-  page-nav works!
+  items works!
 </p>
-
+<div>
+  <button (click)="goBack()">Back</button>
+</div>
 <div class="example-button-row">
   <button mat-raised-button type='button' *ngIf="prePage" (click)="changeCurrentPage(prePage)" routerLink="/{{catName}}" [queryParams]={page:prePage}><span><</span></button>
   <button mat-stroked-button type='button' *ngFor="let i of pages" (click)="changeCurrentPage(i)" routerLink="/{{catName}}" [queryParams]={page:i}>{{i}}</button>
   <button mat-raised-button type='button' *ngIf="nextPage" (click)="changeCurrentPage(nextPage)" routerLink="/{{catName}}" [queryParams]={page:nextPage}><span>></span></button>
 </div>
-
+<app-items-in-category [items]="items" [pageNum]="currentPage"></app-items-in-category>

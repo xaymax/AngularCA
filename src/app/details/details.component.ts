@@ -60,4 +60,8 @@ export class DetailsComponent implements OnInit {
       });
   }
 
+  goBack() {
+    console.log('child');
+    this.location.back();
+  }
 }

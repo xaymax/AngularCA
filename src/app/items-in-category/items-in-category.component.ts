@@ -1,11 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Location, KeyValue } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { StarwarService } from '../starwar.service';
-
-import { PageNavComponent } from '../page-nav/page-nav.component';
-
 
 @Component({
   selector: 'app-items-in-category',
@@ -14,61 +10,34 @@ import { PageNavComponent } from '../page-nav/page-nav.component';
 })
 export class ItemsInCategoryComponent implements OnInit {
 
+  /* ------------------------------------------ */
+  /*                  PROPERTIES                */
+  /* ------------------------------------------ */
   @Input() pageNum: string;
-  page = this.route.queryParams.subscribe((params: Params) => {
-    this.pageNum = params['page'];
-  });
-  items = [];
+  @Input() items: object[]; // = [];
   catName = this.route.snapshot.paramMap.get('catName');
   itemId: string = '';
 
-  @ViewChild(PageNavComponent)
-  PageNavComponent: PageNavComponent
 
+  /* ------------------------------------------ */
+  /*           CONSTRUCTOR & LIFECYCLE          */
+  /* ------------------------------------------ */
   constructor(
     private route: ActivatedRoute,
-    private starwarService: StarwarService,
-    private location: Location) {
-  }
+    private starwarService: StarwarService
+  ) { }
 
   ngOnInit(): void {
-    console.log("items component ngOnInit");
-    this.showItemsInCategory();
-    // console.log("items component onInit get the child current page: " + this.PageNavComponent.currentPage);
-  }
-
-  ngOnChanges() {
-    console.log("items component ngOnChanges");
-    this.pageNum = this.PageNavComponent.currentPage;
-    this.showItemsInCategory();
-    
+    console.log("items in cat component ngOnInit");
   }
 
 
-  /* To load all items in the selected category */
-  showItemsInCategory() {
-    //console.log('Get into items-in-category component getItemsInCategory() function');
-    return this.starwarService.getItemsInCategory(this.catName, this.pageNum)
-      .subscribe((data) => {
-        // console.log(data.results);
-        this.items = data.results;
-        // for (var i = 1; i <= data.length; i++) {
-        //   let Vid: string = "";
-        //   var idKV: { [key: string]: string } = { "id": Vid };
-        //   this.items.push(idKV);
-        // }
-      });
-  }
 
+  /* ------------------------------------------ */
+  /*                EVENT ACTIONS               */
+  /* ------------------------------------------ */
+  /* (click) action: when select item */
   getItemIdFromCurrentPageNum(itemApiUrl: string) {
     return this.itemId = this.starwarService.getItemIdFromApiUrl(itemApiUrl);
-  }
-
-  changePage() {
-    this.ngOnChanges();
-    console.log('click on pagenav component selector, already changed pageNum to ' + this.pageNum);
-  }
-  goBack(){
-    history.go(-1);
   }
 }
