@@ -1,4 +1,4 @@
-import { Component, OnInit, IterableDiffers } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -14,7 +14,6 @@ export class DetailsComponent implements OnInit {
   itemId = this.route.snapshot.paramMap.get('itemId');
   catName = this.route.snapshot.paramMap.get('catName');
 
-
   itemUrl: string = '';
   keys: Array<any> = [];
   key: string = '';
@@ -22,6 +21,7 @@ export class DetailsComponent implements OnInit {
   value: any;
   details = [];
   detail: string = '';
+  jsonDetail: JSON;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,10 +36,10 @@ export class DetailsComponent implements OnInit {
   /* To load details of the selected item */
   showDetailsOfItem() {
     // console.log('Get into details component getDetailsOfItem() function');
-    return this.starwarService.getDetailsOfItem(this.catName,this.itemId)
+    return this.starwarService.getDetailsOfItem(this.catName, this.itemId)
       .subscribe((data) => {
         console.log(data); //json
-        console.log(typeof data);//object
+        // console.log(typeof data);//object
 
         this.keys = Object.keys(data);
         this.values = Object.values(data);
@@ -54,14 +54,23 @@ export class DetailsComponent implements OnInit {
         // });
 
         for (let i = 1; i <= this.keys.length; i++) {
-          this.detail = this.keys[i] + ": " + this.values[i];
+          // this.detail = this.keys[i] + this.values[i];
+          this.detail = "\"" + this.keys[i] + "\"" + ":" + "\"" + this.values[i] + "\"";
           this.details.push(this.detail);
+
         }
+        console.log(this.details); //Array
+        this.jsonDetail = JSON.parse(`{${this.details}}`);
+        console.log(this.jsonDetail); //JSON object
+
       });
   }
 
   goBack() {
-    console.log('child');
     this.location.back();
+  }
+
+  typeOf(value: any) {
+    return typeof value;
   }
 }
