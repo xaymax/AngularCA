@@ -1,0 +1,20 @@
+
+<!-- <ul class="category">
+  <li *ngFor="let category of categoryList">
+    <a routerLink="/{{category}}">
+      <span class="badge">{{category}}</span>
+    </a>
+  </li>
+</ul> -->
+<div class="card text-center" style="max-width: 500px;margin:auto;">
+    <div class="card-header" style="background-color: rgb(59, 128, 219); font-weight: 400;vertical-align: middle;">
+        <h5>Category</h5>
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+          <li class="list-group-item list-group-item-action"  *ngFor="let category of categories | keyvalue" routerLink="/{{category.key}}" [queryParams]={page:page}>
+              {{category.key | titlecase}}
+          </li>
+        </ul>
+    </div>
+  </div>

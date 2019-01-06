@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'TIE-Wing';   /*font name*/
+    src: url('../assets/font/boba-fonts_tie-wing/TIE-Wing.ttf'); /*font source*/
+}
+@font-face {
+    font-family: 'Starlight';   /*font name*/
+    src: url('../assets/font/des_starlight/Starlight.ttf'); /*font source*/
+}
+@font-face {
+    font-family: 'GreenStrand';   /*font name*/
+    src: url('../assets/font/chequered-ink_green-strand/Green_Strand.otf'); /*font source*/
+}
+@font-face {
+    font-family: 'CasanovaScotia';   /*font name*/
+    src: url('../assets/font/chequered-ink_casanova-scotia/Casanova_Scotia.otf'); /*font source*/
+}
+
+*{
+    align-content: center;
+}
+body{ 
+  background: url(../assets/img/app-background.png) repeat fixed center;
+  height:100%; 
+  width:100%; 
+  overflow: hidden;
+}
+
+
+.title{
+    text-align:center;
+    /* color: yellow;  */
+    color: transparent;
+    -webkit-text-stroke: 3px yellow;
+    font-size: 80px;
+    font-family: 'GreenStrand';
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+.title1{
+    font-size: 20px;
+    text-align:center;
+    vertical-align: center;
+    /* padding-top: 10px; */
+    font-weight: 500;
+    color: transparent;
+    background-color :#fafafa;
+     text-shadow : rgba(255,255,255,0.2) 0 5px 5px; /*, rgba(255,255,255,0.2) 1px 3px 3px; */
+    -webkit-background-clip : text;
+
+}
+
+.content{
+    font-family: "CasanovaScotia";
+    display:block; 
+    margin:auto; 
+    text-align: center;
+}
+
