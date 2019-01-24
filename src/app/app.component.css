@@ -19,10 +19,12 @@
     align-content: center;
 }
 body{ 
-  background: url(../assets/img/app-background.png) repeat fixed center;
-  height:100%; 
+  background: url(../assets/img/app-background.png) repeat fixed center ;
+  height:150%; 
   width:100%; 
+  padding-bottom: 20px;
   overflow: hidden;
+  color: #ffffff;
 }
 
 
@@ -51,7 +53,7 @@ body{
 }
 
 .content{
-    font-family: "CasanovaScotia";
+    /* font-family: "CasanovaScotia"; */
     display:block; 
     margin:auto; 
     text-align: center;

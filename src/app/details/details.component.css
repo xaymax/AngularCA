@@ -17,3 +17,19 @@ li{
     0px 5px 0px #555, 
     0px 6px 5px #001135;
 }
+.picsize{
+    width: 350px;
+    height: 20em;
+}
+.details-badge{
+    background-position: center 50%;
+    margin-top: 20px;
+    height:20em
+}
+.details-text{   
+    margin-top: 20px;
+    float: left;
+   
+    color:white;
+    
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgModel } from '../../node_modules/@angular/forms';
+import { DetailsComponent } from './details/details.component';
 
 @Component({
   selector: 'app-root',
