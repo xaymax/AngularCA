@@ -1,3 +1,7 @@
+*{
+    font-family: 'CasanovaScotia';
+}
+
 li:hover
 { 
  background-color:yellow;
