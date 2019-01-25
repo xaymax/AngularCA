@@ -48,7 +48,7 @@ body{
     color: transparent;
     background-color :#fafafa;
      text-shadow : rgba(255,255,255,0.2) 0 5px 5px; /*, rgba(255,255,255,0.2) 1px 3px 3px; */
-    -webkit-background-clip : text;
+    -webkiti-background-clip : text;
 
 }
 
@@ -58,4 +58,5 @@ body{
     margin:auto; 
     text-align: center;
 }
+
 

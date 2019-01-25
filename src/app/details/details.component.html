@@ -165,9 +165,9 @@
               style="width: 60%; margin: auto">
               <img  *ngIf="catName=='people'" class="card-img-top" src="https://starwars-visualguide.com/assets/img/characters/{{picnum}}.jpg" alt="Card image cap"
               style="width: 60%; margin: auto">
-            <div class="card-body">
-              <div class="row" style="margin:0 30%">
-                <table style="color: black; text-align: left ;">
+            <div class="card-body" style="width: 100%">
+              <div class="row" style="margin:0 0%">
+                <table style="color: black; text-align:justify ;width:100%">
                   <tr>
                     <th colspan="2">{{name}}</th>
                   </tr>
@@ -180,24 +180,85 @@
           </div>
         </div>
         <div class="col-lg-7" style="margin-top: 20px;color:black">
-          <div class="panel panel-default">
+          <div  *ngIf="catName!='films'" class="panel panel-default">
             <div class="panel-heading">Relatived Films</div>
-            <div class="panel-body">
+            <div class="panel-body RelatedInfo" style=" text-align: left;" >
               <div style="width: 100%; column-count: 2; column-gap: 3px;">
-                <div *ngFor="let link of links">
-                  <a href="/{{link.filmurl}}">
-                    <i class="fa fa-camera-retro" style="float: left;"></i>
-                  </a>{{link.filmname}}</div>
+                <div *ngFor="let Flink of filmlinks">
+                  <a href="/{{Flink.filmurl}}" >
+                    <i class="fa fa-arrow-right" style="float: left;"></i>
+                  </a>{{Flink.filmname}}</div>
               </div>
             </div>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">Relatived Starships</div>
-            <div class="panel-body">Panel Content</div>
+          <div *ngIf="catName =='people' || catName =='films'" class="panel panel-default">
+            <div class="panel-heading">Related Starships</div>
+            <div class="panel-body RelatedInfo">
+              <div style="width: 100%; column-count: 2; column-gap: 3px;">
+                <div *ngFor="let Slink of starshiplinks" >
+                  <a href="/{{Slink.startshipurl}}">
+                    <i class="fa fa-arrow-right" style="float: left;"></i>
+                  </a>{{Slink.startship}}
+                </div>
+               
+              </div>
+            </div>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">Comments</div>
-            <div class="panel-body">
+          <div  *ngIf="catName!='people'" class="panel panel-default" >
+              <div class="panel-heading">Related Characters</div>
+              <div class="panel-body RelatedInfo">
+                <div style="width: 100%; column-count: 2; column-gap: 3px;">
+                  <div *ngFor="let Plink of peoplelinks" >
+                    <a href="/{{Plink.peopleurl}}">
+                      <i class="fa fa-arrow-right" style="float: left;"></i>
+                    </a>{{Plink.peoplename}}
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            <div  *ngIf="catName =='people' || catName =='films'" class="panel panel-default">
+                <div class="panel-heading">Related Vehicles</div>
+                <div class="panel-body RelatedInfo">
+                  <div style="width: 100%; column-count: 2; column-gap: 3px;">
+                    <div *ngFor="let Vlink of vehiclelinks" >
+                      <a href="/{{Vlink.vehiclesurl}}">
+                        <i class="fa fa-arrow-right" style="float: left;"></i>
+                      </a>{{Vlink.vehiclesname}}
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+              <div  *ngIf="catName=='films'" class="panel panel-default"  >
+                  <div class="panel-heading">Related Planets</div>
+                  <div class="panel-body RelatedInfo">
+                    <div style="width: 100%; column-count: 2; column-gap: 3px;">
+                      <div *ngFor="let Planetlink of planetlinks" >
+                        <a href="/{{Planetlink.planeturl}}">
+                          <i class="fa fa-arrow-right" style="float: left;"></i>
+                        </a>{{Planetlink.planetname}}
+                      </div>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="catName=='films'" class="panel panel-default"  >
+                    <div class="panel-heading">Related Species</div>
+                    <div class="panel-body RelatedInfo">
+                      <div style="width: 100%; column-count: 2; column-gap: 3px;">
+                        <div *ngFor="let Splink of specieslinks" >
+                          <a href="/{{Splink.speciesurl}}">
+                            <i class="fa fa-arrow-right" style="float: left;"></i>
+                          </a>{{Splink.speciesname}}
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+          <div class="panel panel-default"  >
+            <div class="panel-heading" >Comments</div>
+            <div class="panel-body RelatedInfo">
               <div class="col-lg-12">
                 <textarea class="form-control" style="width: 100%" #userinput></textarea>
                 <div>
@@ -216,6 +277,6 @@
       </div>
     </div>
     <div class="container-body" style="color:#ffffff;margin-top: 150px">
-      <p>Good Evening Lu ~</p>
+      <p>Welcome to Angular CA || Created by WangLu | ZhaoTongTong | LuoChao</p>
     </div>
   </div>

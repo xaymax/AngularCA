@@ -76,15 +76,14 @@ export class StarwarService {
       );
   };
 
-  getRelatedFilms(relatedFilmUrl: string) {
- 
-
+  getRelatedUrls(relatedFilmUrl: string) {
     return this.http.get<any>(relatedFilmUrl)
       .pipe(
-        tap(_ => console.log()),
+        // tap(_ => console.log()),
         catchError(this.handleError<any>())
       );
   };
+
 
 
 
