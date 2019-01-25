@@ -43,10 +43,10 @@ body{
     vertical-align: center;
     /* padding-top: 10px; */
     font-weight: 500;
-    color: transparent;
-    background-color :#fafafa;
+    color: white;
+    /* background-color :#fafafa; */
      text-shadow : rgba(255,255,255,0.2) 0 5px 5px; /*, rgba(255,255,255,0.2) 1px 3px 3px; */
-    -webkit-background-clip : text;
+    /* -webkit-background-clip : text; */
 
 }
 
