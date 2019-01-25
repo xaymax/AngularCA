@@ -4,8 +4,6 @@ import { Location } from '@angular/common';
 
 import { StarwarService } from '../starwar.service';
 
-// import{Comment} from '../Comments';
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -13,7 +11,6 @@ import { StarwarService } from '../starwar.service';
 })
 export class DetailsComponent implements OnInit {
 
-  // @Input() comment:Comment
 
   itemId = this.route.snapshot.paramMap.get('itemId');
   catName = this.route.snapshot.paramMap.get('catName');

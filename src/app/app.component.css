@@ -19,12 +19,10 @@
     align-content: center;
 }
 body{ 
-  background: url(../assets/img/app-background.png) repeat fixed center ;
-  height:150%; 
+  background: url(../assets/img/app-background.png) repeat fixed center;
+  height:100%; 
   width:100%; 
-  padding-bottom: 20px;
   overflow: hidden;
-  color: #ffffff;
 }
 
 
@@ -48,15 +46,14 @@ body{
     color: transparent;
     background-color :#fafafa;
      text-shadow : rgba(255,255,255,0.2) 0 5px 5px; /*, rgba(255,255,255,0.2) 1px 3px 3px; */
-    -webkiti-background-clip : text;
+    -webkit-background-clip : text;
 
 }
 
 .content{
-    /* font-family: "CasanovaScotia"; */
+    font-family: "CasanovaScotia";
     display:block; 
     margin:auto; 
     text-align: center;
 }
-
 
