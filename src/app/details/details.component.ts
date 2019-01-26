@@ -136,7 +136,7 @@ export class DetailsComponent implements OnInit {
               }
 
             }
-            if (this.keys[i] == "characters") {
+            if (this.keys[i] == "characters" ||this.keys[i] == "residents"||this.keys[i] == "pilots") {
               this.RelatedPeopleurls = this.values[i];
               for (let i = 0; i < this.RelatedPeopleurls.length; i++) {
                 this.RelatedPeopleurl = this.RelatedPeopleurls[i];
@@ -183,7 +183,7 @@ export class DetailsComponent implements OnInit {
         this.link = this.category[4] + "/" + this.category[5];
         // console.log("Category", this.category)
         // console.log("link", this.link)
-        // console.log("tag",tag);
+        console.log("tag",tag);
 
         if (tag=="films"){
           this.filmobj = { "filmname": this.title, "filmurl": this.link };
@@ -197,10 +197,10 @@ export class DetailsComponent implements OnInit {
           // console.log("starshiplinks",this.starshiplinks)
         }
 
-        if (tag=="characters"){
+        if (tag=="characters"||tag=="residents"||tag=="pilots"){
           this.peopleobj = {"peoplename":data.name,"peopleurl":this.link};
           this.peoplelinks.push(this.peopleobj);
-          // console.log("peoplelinks",this.peoplelinks)
+          console.log("peoplelinks",this.peoplelinks)
         }
         if (tag=="species"){
           this.speciesobj = {"speciesname":data.name,"speciesurl":this.link};
